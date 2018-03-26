@@ -23,9 +23,9 @@ namespace Requestor
 
             Requestor requestor = new Requestor(requestQueueName, replyQueueName);
 
-            ThreadStart ReceiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
-            Thread ReceiveSync = new Thread(ReceiveSyncMethod);
-            ReceiveSync.Start();
+            ThreadStart receiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
+            Thread receiveSyncThread = new Thread(receiveSyncMethod);
+            receiveSyncThread.Start();
             
             requestor.Send("This is a request.");
         }
