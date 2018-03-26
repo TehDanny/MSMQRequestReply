@@ -23,11 +23,23 @@ namespace Requestor
 
             Requestor requestor = new Requestor(requestQueueName, replyQueueName);
 
-            ThreadStart receiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
-            Thread receiveSyncThread = new Thread(receiveSyncMethod);
-            receiveSyncThread.Start();
-            
-            requestor.Send("This is a request.");
+            //ThreadStart receiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
+            //Thread receiveSyncThread = new Thread(receiveSyncMethod);
+            //receiveSyncThread.Start();
+
+            string userInput = "";
+
+            while (userInput.ToLower() != "quit")
+            {
+                Console.Write("Request message: ");
+                userInput = Console.ReadLine();
+                if (userInput.ToLower() == "quit")
+                    break;
+
+                requestor.Send(userInput);
+
+                requestor.ReceiveSync();
+            }
         }
     }
 }
