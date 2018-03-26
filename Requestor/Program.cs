@@ -23,10 +23,6 @@ namespace Requestor
 
             Requestor requestor = new Requestor(requestQueueName, replyQueueName);
 
-            //ThreadStart receiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
-            //Thread receiveSyncThread = new Thread(receiveSyncMethod);
-            //receiveSyncThread.Start();
-
             string userInput = "";
 
             while (userInput.ToLower() != "quit")

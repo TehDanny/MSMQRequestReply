@@ -20,6 +20,8 @@ namespace Replier
             string invalidQueueName = @".\private$\invalidQueue";
 
             Replier replier = new Replier(requestQueueName, invalidQueueName);
+
+            Console.ReadLine();
         }
     }
 }
