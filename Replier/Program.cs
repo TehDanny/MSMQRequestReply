@@ -16,7 +16,10 @@ namespace Replier
 
         private void Run()
         {
-            throw new NotImplementedException();
+            string requestQueueName = @".\private$\requestQueue";
+            string invalidQueueName = @".\private$\invalidQueue";
+
+            Replier replier = new Replier(requestQueueName, invalidQueueName);
         }
     }
 }

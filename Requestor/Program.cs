@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Messaging;
+using System.Threading;
 
 namespace Requestor
 {
@@ -16,7 +18,17 @@ namespace Requestor
 
         private void Run()
         {
-            Requestor requestor = new Requestor();
+            string requestQueueName = @".\private$\requestQueue";
+            string replyQueueName = @".\private$\replyQueue";
+
+            Requestor requestor = new Requestor(requestQueueName, replyQueueName);
+
+            ThreadStart ReceiveSyncMethod = new ThreadStart(requestor.ReceiveSync);
+            Thread ReceiveSync = new Thread(ReceiveSyncMethod);
+            ReceiveSync.Start();
+
+            
+            requestor.Send("This is a request.");
         }
     }
 }
